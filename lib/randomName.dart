@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:random_string/random_string.dart';
+import 'package:test_project/layouts.dart';
 import 'package:test_project/randomNameGenerator.dart';
 
 class RandomName extends State<RandomNameGenerator> {
@@ -68,9 +69,7 @@ class RandomName extends State<RandomNameGenerator> {
         appBar: AppBar (
           title: Text(randomName),
         ),
-        body: Center(
-          child: Image.network('https://picsum.photos/200/300'),
-        ),
+        body: mainWidget(),
       );
     }));
   }
