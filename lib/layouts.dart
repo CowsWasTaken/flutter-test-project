@@ -7,7 +7,46 @@ Widget mainWidget() {
   //     container()
   //   ],
   // );
-  return gridView();
+  return materialCard();
+}
+
+Widget materialCard() {
+  return const SizedBox(
+    height: 300,
+    child: Card(
+      child: Column(
+        children: [
+          ListTile(
+            title: Text("This is an epic Title"),
+            subtitle: Text("This is an even better subtitle"),
+            leading: Icon(
+                Icons.add_card,
+                color: Colors.blue
+            ),
+          ),
+          Divider(),
+          ListTile(
+            title: Text("This is an epic Title"),
+            subtitle: Text("This is an even better subtitle"),
+            leading: Icon(
+                Icons.add_card,
+                color: Colors.blue
+            ),
+
+          ),
+          Divider(),
+          ListTile(
+            title: Text("This is an epic Title"),
+            subtitle: Text("This is an even better subtitle"),
+            leading: Icon(
+                Icons.add_card,
+                color: Colors.blue
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 Widget gridView() {
