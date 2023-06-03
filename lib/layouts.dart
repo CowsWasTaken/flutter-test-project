@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'networking.dart';
+
 Widget mainWidget() {
   // return Row(
   //   children: [
@@ -11,34 +13,15 @@ Widget mainWidget() {
 }
 
 Widget materialCard() {
-  return const SizedBox(
+  return SizedBox(
     height: 300,
     child: Card(
       child: Column(
         children: [
           ListTile(
-            title: Text("This is an epic Title"),
-            subtitle: Text("This is an even better subtitle"),
-            leading: Icon(
-                Icons.add_card,
-                color: Colors.blue
-            ),
-          ),
-          Divider(),
-          ListTile(
-            title: Text("This is an epic Title"),
-            subtitle: Text("This is an even better subtitle"),
-            leading: Icon(
-                Icons.add_card,
-                color: Colors.blue
-            ),
-
-          ),
-          Divider(),
-          ListTile(
-            title: Text("This is an epic Title"),
-            subtitle: Text("This is an even better subtitle"),
-            leading: Icon(
+            title: const Text("This is an epic Title"),
+            subtitle: buildBitcoinStatus(),
+            leading: const Icon(
                 Icons.add_card,
                 color: Colors.blue
             ),
@@ -52,10 +35,10 @@ Widget materialCard() {
 Widget gridView() {
   return GridView.extent(
     maxCrossAxisExtent: 150,
-    children: containerList(25),
     crossAxisSpacing: 10,
     mainAxisSpacing: 10,
     padding: const EdgeInsets.all(5),
+    children: containerList(25),
   );
 }
 
@@ -68,7 +51,6 @@ List<Widget> containerList(int i) {
               const CircleAvatar(
                 radius: 100,
                 backgroundImage: NetworkImage("https://picsum.photos/100"),
-
               ),
               Container(
                 padding: const EdgeInsets.all(5),
