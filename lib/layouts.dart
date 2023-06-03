@@ -20,7 +20,17 @@ Widget materialCard() {
         children: [
           ListTile(
             title: const Text("This is an epic Title"),
-            subtitle: buildBitcoinStatus(),
+            subtitle:
+            buildBitcoinStatus(),
+            leading: const Icon(
+                Icons.add_card,
+                color: Colors.blue
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text("This is an Counter Example"),
+            // subtitle: MyButton(12323),
             leading: const Icon(
                 Icons.add_card,
                 color: Colors.blue
@@ -31,6 +41,7 @@ Widget materialCard() {
     ),
   );
 }
+
 
 Widget gridView() {
   return GridView.extent(
