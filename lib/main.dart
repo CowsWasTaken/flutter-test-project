@@ -1,15 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Superhero App", home: MyExampleSnackbar());
+    return MaterialApp(title: "Superhero App", home: createDrawerExample());
+    // MyExampleSnackbar());
+  }
+
+  createDrawerExample() {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("My Drawer"),
+        ),
+        body: const Center(
+          child: Text("Draw me baby !!!"),
+        ),
+        drawer: Drawer(
+          child: buildDrawerElements(),
+        ));
+  }
+
+  void launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  buildDrawerElements() {
+    return ListView(
+      children: [
+        const UserAccountsDrawerHeader(
+          accountName: Text("Cows Are Beautiful"),
+          accountEmail: Text("cows@gmail.com"),
+          currentAccountPicture: CircleAvatar(
+            backgroundColor: Colors.brown,
+            child: Text("CAB"),
+          ),
+        ),
+        ListTile(
+          title: const Text("Dashboard"),
+          onTap: () => launchUrl('https://flutter.dev'),
+        ),
+        const ListTile(
+          title: Text("Impressum"),
+        ),
+        const ListTile(
+          title: Text("Settings"),
+        ),
+      ],
+    );
   }
 }
+
+
 
 class MyButton extends StatelessWidget {
   int counter;
