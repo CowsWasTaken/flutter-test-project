@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -9,8 +11,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Superhero App", home: createDrawerExample());
+    return MaterialApp(title: "Superhero App", home: DrawerExample());
     // MyExampleSnackbar());
+  }
+
+
+}
+
+class DrawerExample extends StatefulWidget {
+  const DrawerExample({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _DrawerExampleState();
+
+}
+
+class _DrawerExampleState extends State<DrawerExample> with RestorationMixin{
+
+  final RestorableInt _currentIndex = RestorableInt(0);
+
+  @override
+  Widget build(BuildContext context) {
+    return createDrawerExample();
   }
 
   createDrawerExample() {
@@ -23,7 +45,26 @@ class MyApp extends StatelessWidget {
         ),
         drawer: Drawer(
           child: buildDrawerElements(),
-        ));
+        ),
+      bottomNavigationBar:
+      BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: "Account"
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.access_time), label: "Account"
+          ),
+        ],
+        currentIndex: _currentIndex.value,
+        onTap: (index) {
+          setState(() {
+            _currentIndex.value = index;
+            print(_currentIndex.value);
+          });
+        },
+      ),
+    );
   }
 
   void launchUrl(String url) async {
@@ -57,6 +98,14 @@ class MyApp extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  @override
+  String? get restorationId => 'drawerexamplestate';
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_currentIndex, 'bottom_navigation_tab_index');
   }
 }
 
